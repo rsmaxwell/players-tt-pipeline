@@ -6,7 +6,7 @@ cd "src"
 pwd
 ls -al 
 
-if [ -d "node_modules" ]; then
+if [ ! -d "node_modules" ]; then
     ng add --skip-confirmation --defaults @angular/material
     npm install @angular/cdk
     npm install @angular/flex-layout
