@@ -2,6 +2,8 @@
 
 set -x
 
+cd "./src/github.com/rsmaxwell/players-tt"
+
 REPOSITORY=releases
 REPOSITORYID=releases
 
