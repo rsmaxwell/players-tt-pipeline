@@ -1,11 +1,11 @@
 #!/bin/bash
 
-pwd
+# pwd
 
 cd "./src/github.com/rsmaxwell/players-tt"
 
-pwd
-ls -al
+# pwd
+# ls -al
 
 TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
 set -x    
