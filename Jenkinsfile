@@ -9,7 +9,7 @@ pipeline {
 		stage('prepare') {
 			steps {
 				echo 'preparing the application'
-				dir('xxxxx') {
+				dir('src') {
 					checkout([
 						$class: 'GitSCM', 
 						branches: [[name: '*/main']], 

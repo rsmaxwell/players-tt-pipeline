@@ -1,8 +1,8 @@
 #!/bin/bash
 
 set -x
-
-cd "./src/github.com/rsmaxwell/players-tt"
+pwd
+cd "src"
 
 REPOSITORY=releases
 REPOSITORYID=releases

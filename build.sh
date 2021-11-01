@@ -1,9 +1,8 @@
 #!/bin/bash
 
-# set -x
-# pwd
-
-# cd "./src/github.com/rsmaxwell/players-tt"
+set -x
+pwd
+cd "src"
 
 pwd
 ls -al 
