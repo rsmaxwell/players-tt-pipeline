@@ -9,42 +9,34 @@ pipeline {
 		stage('prepare') {
 			steps {
 				echo 'preparing the application'
-				dir('src/github.com/rsmaxwell/players-tt') {
-					checkout([
-						$class: 'GitSCM', 
-						branches: [[name: '*/main']], 
-						extensions: [], 
-						userRemoteConfigs: [[url: 'https://github.com/rsmaxwell/players-tt']]
-					])
-					sh('./prepare.sh')
-				}
+				checkout([
+					$class: 'GitSCM', 
+					branches: [[name: '*/main']], 
+					extensions: [], 
+					userRemoteConfigs: [[url: 'https://github.com/rsmaxwell/players-tt']]
+				])
+				sh('../prepare.sh')
 			}
 		}
 
 		stage('build') {
 			steps {
 				echo 'building the application'
-				dir('src/github.com/rsmaxwell/players-tt') {
-					sh('./build.sh')
-				}
+				sh('../build.sh')
 			}
 		}
 
 		stage('test') {
 			steps {
 				echo 'testing the application'
-				dir('src/github.com/rsmaxwell/players-tt') {
-					sh("./test.sh")
-				}
+				sh("../test.sh")
 			}
 		}
 
 		stage('deploy') {
 			steps {
 				echo 'deploying the application'
-				dir('src/github.com/rsmaxwell/players-tt') {
-					sh('./deploy.sh')
-				}
+				sh('../deploy.sh')
 			}
 		}
 	}
