@@ -15,6 +15,6 @@ if [ -d "node_modules"]; then
     npm install hammerjs
     npm install ngx-mqtt
     npm install guid-typescript
-do
+fi
 
 ng build
