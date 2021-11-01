@@ -1,10 +1,6 @@
 #!/bin/bash
 
-set -x
-pwd
 cd "src"
-pwd
-ls -al 
 
 if [ ! -d "node_modules" ]; then
     ng add --skip-confirmation --defaults @angular/material

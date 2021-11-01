@@ -1,10 +1,6 @@
 #!/bin/bash
 
-set -x
-pwd
 cd "src"
-pwd
-ls -al
 
 TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
 set -x    
