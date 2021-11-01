@@ -22,7 +22,7 @@ rm -rf deploy
 mkdir -p deploy
 
 cd dist/players-tt
-zip ../../deploy/${FILENAME} *
+zip -r ../../deploy/${FILENAME} *
 
 cd ../../deploy
 mvn --batch-mode deploy:deploy-file -DgroupId=${GROUPID} -DartifactId=${ARTIFACTID} -Dversion=${VERSION} -Dpackaging=${PACKAGING} -Dfile=${FILENAME} -DrepositoryId=${REPOSITORYID} -Durl=${URL} -DrepositoryId=${REPOSITORYID}
