@@ -3,9 +3,8 @@
 set -x
 pwd
 cd "src"
-
-# pwd
-# ls -al
+pwd
+ls -al
 
 TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
 set -x    

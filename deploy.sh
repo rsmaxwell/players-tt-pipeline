@@ -3,6 +3,8 @@
 set -x
 pwd
 cd "src"
+pwd
+ls -al
 
 REPOSITORY=releases
 REPOSITORYID=releases
@@ -16,12 +18,12 @@ URL=https://server.rsmaxwell.co.uk/archiva/repository/${REPOSITORY}
 
 FILENAME=${ARTIFACTID}_${VERSION}.${PACKAGING}
 
-rm -rf ~/workspace/players-tt/deploy
-mkdir -p ~/workspace/players-tt/deploy
+rm -rf deploy
+mkdir -p deploy
 
-cd ~/workspace/players-tt/bin
+cd dist/players-tt
 zip ../deploy/${FILENAME} *
 
-cd ~/workspace/players-tt/deploy
+cd ../deploy
 mvn --batch-mode deploy:deploy-file -DgroupId=${GROUPID} -DartifactId=${ARTIFACTID} -Dversion=${VERSION} -Dpackaging=${PACKAGING} -Dfile=${FILENAME} -DrepositoryId=${REPOSITORYID} -Durl=${URL} -DrepositoryId=${REPOSITORYID}
 
