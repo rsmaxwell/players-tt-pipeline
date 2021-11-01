@@ -3,7 +3,7 @@
 cd "src"
 
 TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
-set -x    
+  
 find . -name "version.go" | while read versionfile; do
 
     echo "Replacing tags in ${versionfile}"
