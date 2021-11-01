@@ -1,5 +1,6 @@
 #!/bin/bash
 
+set -x
 pwd
 
 cd "./src/github.com/rsmaxwell/players-tt"
