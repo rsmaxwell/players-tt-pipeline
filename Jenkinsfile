@@ -16,7 +16,7 @@ pipeline {
 						extensions: [], 
 						userRemoteConfigs: [[url: 'https://github.com/rsmaxwell/players-tt']]
 					])
-				        sh('../prepare.sh')
+					sh('../prepare.sh')
 				}
 			}
 		}
@@ -25,8 +25,8 @@ pipeline {
 			steps {
 				echo 'building the application'
 				dir('src') {
-				        sh('../build.sh')
-                                }
+					sh('../build.sh')
+				}
 			}
 		}
 
@@ -34,8 +34,8 @@ pipeline {
 			steps {
 				echo 'testing the application'
 				dir('src') {
-				        sh("../test.sh")
-                                }
+					sh("../test.sh")
+				}
 			}
 		}
 
@@ -43,8 +43,8 @@ pipeline {
 			steps {
 				echo 'deploying the application'
 				dir('src') {
-				        sh('../deploy.sh')
-                                }
+					sh('../deploy.sh')
+				}
 			}
 		}
 	}
