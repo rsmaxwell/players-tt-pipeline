@@ -13,4 +13,4 @@ if [ ! -d "node_modules" ]; then
     npm install guid-typescript
 fi
 
-ng build
+ng build --configuration=prod
