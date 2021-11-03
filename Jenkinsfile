@@ -24,21 +24,27 @@ pipeline {
 		stage('build') {
 			steps {
 				echo 'building the application'
-				sh('./build.sh')
+				dir('src') {
+				        sh('./build.sh')
+                                }
 			}
 		}
 
 		stage('test') {
 			steps {
 				echo 'testing the application'
-				sh("./test.sh")
+				dir('src') {
+				        sh("./test.sh")
+                                }
 			}
 		}
 
 		stage('deploy') {
 			steps {
 				echo 'deploying the application'
-				sh('./deploy.sh')
+				dir('src') {
+				        sh('./deploy.sh')
+                                }
 			}
 		}
 	}
