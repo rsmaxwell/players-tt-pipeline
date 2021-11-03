@@ -1,7 +1,5 @@
 #!/bin/bash
 
-cd "src"
-
 if [ ! -d "node_modules" ]; then
     ng add --skip-confirmation --defaults @angular/material
     npm install @angular/cdk

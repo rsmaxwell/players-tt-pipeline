@@ -1,7 +1,5 @@
 #!/bin/bash
 
-cd "src"
-
 TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
   
 find . -name "version.go" | while read versionfile; do

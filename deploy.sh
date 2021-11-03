@@ -1,7 +1,5 @@
 #!/bin/bash
 
-cd "src"
-
 REPOSITORY=releases
 REPOSITORYID=releases
 
