@@ -25,7 +25,7 @@ pipeline {
 
     stage('build') {
       steps {
-        container('golang') {
+        container('node') {
           dir('project') {
 
             sh('cp /etc/os-release ./build/')
