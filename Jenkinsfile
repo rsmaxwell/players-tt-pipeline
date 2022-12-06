@@ -1,51 +1,73 @@
 pipeline {
-	agent any
+  agent {
+    kubernetes {
+      yamlFile 'KubernetesPod.yaml'
+    }
+  }
+  stages {
 
-	environment {
-		PLAYERS_TT_CONFIG_FILE = credentials('5f29b607-bea6-418f-88e1-15f8f45bde15')
-	}
+    stage('prepare') {
+      steps {
+        container('tools') {
+          dir('project') {
+            echo 'preparing the application'
+            checkout([
+              $class: 'GitSCM', 
+              branches: [[name: '*/main']], 
+              extensions: [], 
+              userRemoteConfigs: [[url: 'https://github.com/rsmaxwell/players-tt']]
+            ])
+            sh('./scripts/prepare.sh   main')
+          }
+        }
+      }
+    }
 
-	stages {
-		stage('prepare') {
-			steps {
-				echo 'preparing the application'
-				dir('src') {
-					checkout([
-						$class: 'GitSCM', 
-						branches: [[name: '*/main']], 
-						extensions: [], 
-						userRemoteConfigs: [[url: 'https://github.com/rsmaxwell/players-tt']]
-					])
-					sh('../prepare.sh')
-				}
-			}
-		}
+    stage('build') {
+      steps {
+        container('golang') {
+          dir('project') {
 
-		stage('build') {
-			steps {
-				echo 'building the application'
-				dir('src') {
-					sh('../build.sh')
-				}
-			}
-		}
+            sh('cp /etc/os-release ./build/')
 
-		stage('test') {
-			steps {
-				echo 'testing the application'
-				dir('src') {
-					sh("../test.sh")
-				}
-			}
-		}
+            echo 'building the application'
+            sh('./scripts/build.sh')
+          }
+        }
+      }
+    }
 
-		stage('deploy') {
-			steps {
-				echo 'deploying the application'
-				dir('src') {
-					sh('../deploy.sh')
-				}
-			}
-		}
-	}
+    stage('test') {
+      steps {
+        container('tools') {
+          dir('project') {
+            echo 'testing the application'
+            sh('./scripts/test.sh')
+          }
+        }
+      }
+    }
+
+    stage('package') {
+      steps {
+        container('tools') {
+          dir('project') {
+            echo 'packaging the application'
+            sh('./scripts/package.sh')
+          }
+        }
+      }
+    }
+
+    stage('deploy') {
+      steps {
+        container('maven') {
+          dir('project') {
+            echo 'deploying the application'
+            sh('./scripts/deploy.sh')
+          }
+        }
+      }
+    }
+  }
 }
